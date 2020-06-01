@@ -22,7 +22,3 @@ while n == 1:
     server.login(username, password)
     server.sendmail(fromaddr, toaddrs, msg)
     server.quit()
-    os.system("cls")
-    emenviados = emenviados + 1
-    print("Emails enviados: ")
-    print(emenviados)
