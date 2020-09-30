@@ -25,3 +25,6 @@ Como se desinstala un programa normal? (Aplicaciones y Caracteristicas o Program
 
 # Como desinstalar en Mac
 Como no tengo mac no se como se hace
+
+# No veo la release de Linux
+Se debe a que necesito un equipo de Linux para compilar el port de Linux. Pero el Port de Linux estara pronto!
