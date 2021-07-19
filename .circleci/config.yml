@@ -11,6 +11,9 @@ jobs:
           name: Install pip
           command: python3 -m ensurepip
       - run:
+          name: Install wheel
+          command: python3 -m pip install wheel 
+      - run:
           name: Install GCC
           command: apk add gcc
       - run:
