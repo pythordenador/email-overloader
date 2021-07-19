@@ -43,6 +43,21 @@ jobs:
       - store_artifacts:
           path: dist/overloader
           destination: overloader-linux
+      - run:
+          name: Download GHR
+          command: wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz
+      - run:
+          name: Unpack GHR
+          command: tar -xvf ghr_v0.14.0_linux_amd64.tar.gz
+      - run:
+          name: Move GHR to actual dir
+          command: mv ghr_v0.14.0_linux_amd64/ghr ./ghr
+      - run:
+          name: Give GHR perms
+          command: chmod 755 ghr
+      - run:
+          name: Upload Github Release
+          command: ./ghr -t ${GITHUB_TOKEN} -u  ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete $(./dist/overloader --version) ./dist/
   buildwin:
     executor:
       name: win/default
