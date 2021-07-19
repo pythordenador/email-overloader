@@ -9,7 +9,7 @@ jobs:
           command: apt update
       - run:
           name: Install Python 3
-          command: apt install python3
+          command: apt install python3 -y
       - run:
           name: Install pip
           command: python3 -m ensurepip
@@ -18,10 +18,10 @@ jobs:
           command: python3 -m pip install wheel 
       - run:
           name: Install GCC
-          command: apt install gcc
+          command: apt install gcc -y
       - run:
           name: Install Wget
-          command: apt install wget
+          command: apt install wget -y
       - run:
           name: ls
           command: ls
