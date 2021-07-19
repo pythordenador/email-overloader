@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  windows: circleci/windows@2.4.0
 jobs:
   build:
     docker:
@@ -41,3 +43,17 @@ jobs:
       - store_artifacts:
           path: dist/overloader
           destination: overloader-linux
+  buildwin:
+    executor:
+      name: win/default
+      size: "medium"
+    steps:
+      - run:
+          name: Install Python
+          command: choco install python -y
+      - run:
+          name: Install GIT
+          command: choco install git -y
+      - run:
+          name: Install pyinstaller
+          command: pip install pyinstaller
