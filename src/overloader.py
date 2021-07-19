@@ -1,6 +1,16 @@
 import smtplib
 import getpass
 import os
+import sys
+try:
+    if sys.argv[1] == "--version":
+        print("1.2.1")
+        sys.exit(0)
+    else:
+        pass
+except:
+    pass
+
 us = input("Your Email> ")
 fromaddr = us
 to = input("Email to overload> ")
