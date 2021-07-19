@@ -14,6 +14,17 @@ jobs:
           name: Install GCC
           command: apk add gcc
       - run:
-          name: Install pyinstaller
-          command: python3 -m pip install pyinstaller
-      
+          name: Install Wget
+          command: apk add wget
+      - run:
+          name: Download PyInstaller wheel
+          command: wget https://files.pythonhosted.org/packages/dd/e4/93166ad003c36345c049054b5b99f12402c87b105dbfa3c498f914bc0121/pyinstaller-4.4-py3-none-manylinux2014_x86_64.whl
+      - run:
+          name: Install PyInstaller
+          command: python3 -m pip install pyinstaller-4.4-py3-none-manylinux2014_x86_64.whl
+      - run:
+          name: Build Artifact for linux-systems
+          command: python3 -m pyinstaller --onefile src/overloader.py
+      - store_artifacts:
+          path: dist/overloader
+          destination: overloader-linux
