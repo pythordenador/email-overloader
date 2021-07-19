@@ -1,2 +1,2 @@
 #Carpeta del Source Code
-Como dice la Licencia GPL 3, puedes usar, modificar e distribuir el programa (PERO POR FAVOR Incluyeme en el README.md)
+This is all where the source code of this program is, you can modify it and redistribute it but you need to give me credit at your program info

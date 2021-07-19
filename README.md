@@ -1,7 +1,7 @@
 # email-overloader
 Esto es solo para divertirse, No me responsabilizo de las consecuencias que se provocan con este programa
 Si quereis el Codigo Fuente, esta en la carpeta SRC
-Si quereis el Build De linux, Esta en la carpeta Linux
+Si quereis el Build De linux, Buscare una forma en el que se pueda ver los artefactos creados por CircleCi
 # Como instalar en Linux
 Descargar el zip en la carpeta Linux, como admin, crear una carpeta, cread una carpeta llamada /programs, otra dentro de programs que se llama overloader, descomprimid ahi los archivos y ejecutad el siguiente comando
 ln -sf /programs/overloader/overloader /usr/bin/overloader
