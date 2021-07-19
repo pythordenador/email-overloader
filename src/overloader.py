@@ -5,12 +5,14 @@ import sys
 try:
     if sys.argv[1] == "--version":
         print("1.2.1")
-        sys.exit(0)
+        e = 1
     else:
-        pass
+        e = 0
 except:
-    pass
-
+    e = 0
+    
+if e == 1:
+    sys.exit(0)
 us = input("Your Email> ")
 fromaddr = us
 to = input("Email to overload> ")
