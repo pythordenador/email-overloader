@@ -1,0 +1,15 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run:
+          name: Install Python 3
+          command: apk add python3
+      - run:
+          name: Install pip
+          command: python3 -m ensurepip
+      - run:
+          name: Install pyinstaller
+          command: python3 -m pip install pyinstaller
