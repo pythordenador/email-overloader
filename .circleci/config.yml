@@ -2,11 +2,11 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: alpine:latest
+      - image: ubuntu:latest
     steps:
       - run:
           name: Install Python 3
-          command: apk add python3
+          command: apt install python3
       - run:
           name: Install pip
           command: python3 -m ensurepip
@@ -15,16 +15,17 @@ jobs:
           command: python3 -m pip install wheel 
       - run:
           name: Install GCC
-          command: apk add gcc
+          command: apt install gcc
       - run:
           name: Install Wget
-          command: apk add wget
+          command: apt install wget
       - run:
-          name: Download PyInstaller wheel
-          command: wget https://files.pythonhosted.org/packages/56/68/fcf288abb7985d17c4d5802aa76cbc6e00cd85d084230338cf4ef8696a38/pyinstaller-4.4.tar.gz
+          name: ls
+          command: ls
+
       - run:
           name: Install PyInstaller
-          command: tar -xvf pyinstaller-4.4.tar.gz && cd pyinstaller-4.4 && python3 setup.py build --target-arch=x86_64 && python3 setup.py install
+          command: python3 -m pip install pyinstaller
       - run:
           name: Build Artifact for linux-systems
           command: python3 -m pyinstaller --onefile src/overloader.py
