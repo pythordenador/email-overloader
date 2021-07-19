@@ -5,6 +5,9 @@ jobs:
       - image: ubuntu:latest
     steps:
       - run:
+          name: Update Repositories
+          command: apt update
+      - run:
           name: Install Python 3
           command: apt install python3
       - run:
