@@ -31,7 +31,7 @@ jobs:
           command: python3 -m pip install pyinstaller
       - run:
           name: Build Artifact for linux-systems
-          command: python3 -m pyinstaller --onefile src/overloader.py
+          command: pyinstaller --onefile src/overloader.py
       - store_artifacts:
           path: dist/overloader
           destination: overloader-linux
