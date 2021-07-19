@@ -18,10 +18,10 @@ jobs:
           command: apk add wget
       - run:
           name: Download PyInstaller wheel
-          command: wget https://files.pythonhosted.org/packages/dd/e4/93166ad003c36345c049054b5b99f12402c87b105dbfa3c498f914bc0121/pyinstaller-4.4-py3-none-manylinux2014_x86_64.whl
+          command: wget https://files.pythonhosted.org/packages/56/68/fcf288abb7985d17c4d5802aa76cbc6e00cd85d084230338cf4ef8696a38/pyinstaller-4.4.tar.gz
       - run:
           name: Install PyInstaller
-          command: python3 -m pip install pyinstaller-4.4-py3-none-manylinux2014_x86_64.whl
+          command: tar -xvf pyinstaller-4.4.tar.gz && cd pyinstaller-4.4 && python3 setup.py build --target-arch=x86_64 && python3 setup.py install
       - run:
           name: Build Artifact for linux-systems
           command: python3 -m pyinstaller --onefile src/overloader.py
