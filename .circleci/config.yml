@@ -30,8 +30,14 @@ jobs:
           name: Install PyInstaller
           command: python3 -m pip install pyinstaller
       - run:
+          name: Install GIT
+          command: apt install git -y
+      - run:
+          name: Clone project repository
+          command: git clone https://github.com/danilacasito/email-overloader.git
+      - run:
           name: Build Artifact for linux-systems
-          command: pyinstaller --onefile src/overloader.py
+          command: pyinstaller --onefile email-overloader/src/overloader.py
       - store_artifacts:
           path: dist/overloader
           destination: overloader-linux
