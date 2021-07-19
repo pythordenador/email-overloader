@@ -12,7 +12,7 @@ jobs:
           command: apt install python3 -y
       - run:
           name: Install pip
-          command: python3 -m ensurepip
+          command: apt install python3-pip -y
       - run:
           name: Install wheel
           command: python3 -m pip install wheel 
