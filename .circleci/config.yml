@@ -1,0 +1,43 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: ubuntu:latest
+    steps:
+      - run:
+          name: Update Repositories
+          command: apt update
+      - run:
+          name: Install Python 3
+          command: apt install python3 -y
+      - run:
+          name: Install pip
+          command: apt install python3-pip -y
+      - run:
+          name: Install wheel
+          command: python3 -m pip install wheel 
+      - run:
+          name: Install GCC
+          command: apt install gcc -y
+      - run:
+          name: Install Wget
+          command: apt install wget -y
+      - run:
+          name: ls
+          command: ls
+
+      - run:
+          name: Install PyInstaller
+          command: python3 -m pip install pyinstaller
+      - run:
+          name: Install GIT
+          command: apt install git -y
+      - run:
+          name: Clone project repository
+          command: git clone https://github.com/danilacasito/email-overloader.git
+      - run:
+          name: Build Artifact for linux-systems
+          command: pyinstaller --onefile email-overloader/src/overloader.py
+      - store_artifacts:
+          path: dist/overloader
+          destination: overloader-linux
