@@ -11,5 +11,9 @@ jobs:
           name: Install pip
           command: python3 -m ensurepip
       - run:
+          name: Install GCC
+          command: apk add gcc
+      - run:
           name: Install pyinstaller
           command: python3 -m pip install pyinstaller
+      
