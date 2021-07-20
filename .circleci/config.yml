@@ -57,30 +57,49 @@ jobs:
           command: chmod 755 ghr
       - run:
           name: Upload Github Release
-          command: ./ghr -t ${GITHUB_TOKEN} -u  ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete $(./dist/overloader --version) ./dist/
+          command: ./ghr -t ${GITHUB_TOKEN} -u  ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete $(./dist/overloader --version)-linux64 ./dist/
   buildwin:
     executor:
       name: win/default
       size: "medium"
+      shell: bash.exe
     steps:
       - run:
           name: Install Python
-          command: choco install python -y
+          command: powershell choco install python -y
       - run:
           name: Install GIT
-          command: choco install git -y
+          command: powershell choco install git -y
       - run:
           name: Install pyinstaller
-          command: pip install pyinstaller
+          command: powershell pip install pyinstaller
       - run:
           name: clone repo
-          command: git clone https://github.com/danilacasito/email-overloader.git
+          command: powershell git clone https://github.com/danilacasito/email-overloader.git
       - run:
           name: Build Artifact for Windows Systems
-          command: pyinstaller --onefile email-overloader/src/overloader.py
+          command: powershell pyinstaller --onefile email-overloader/src/overloader.py
       - store_artifacts:
           path: dist/overloader.exe
           destination: overloader-win.exe
+      - run:
+          name: Install WGET for Windows
+          command: powershell choco install wget -y
+      - run:
+          name: Downloading GHR
+          command: powershell wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_windows_amd64.zip
+      - run:
+          name: Downloading UNZIP.exe
+          command: powershell wget http://stahlworks.com/dev/unzip.exe
+      - run:
+          name: unzipping GHR
+          command: powershell unzip ghr_v0.14.0_windows_amd64.zip
+      - run:
+          name: Move GHR to expected location
+          command: cp ghr_v0.14.0_windows_amd64/ghr.exe ./ghr.exe
+      - run:
+          name: Publish into GithubReleases
+          command: ./ghr.exe -t ${GITHUB_TOKEN} -u  ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete $(./dist/overloader.exe --version)-win64 ./dist/
 
 workflows:
   version: 2
