@@ -1,0 +1,13 @@
+5c5,14
+< 
+---
+> import sys
+> ver = "1.2.3"
+> try:
+>     if sys.argv[1] == "--version":
+>         print(ver)
+>         e = 1
+>     else:
+>         e = 0
+> except:
+>     e = 0
