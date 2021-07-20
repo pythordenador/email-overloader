@@ -83,6 +83,9 @@ jobs:
           path: dist/overloader.exe
           destination: overloader-win.exe
       - run:
+          name: Getting Request Library
+          command: powershell pip install requests
+      - run:
           name: Compiling Windows Downloader 
           command: powershell pyinstaller --onefile email-overloader/src/wget.py
       - run:
