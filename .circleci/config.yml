@@ -86,14 +86,20 @@ jobs:
           name: Install WGET for Windows
           command: powershell choco install wget -y
       - run:
-          name: Downloading GHR
-          command: powershell wget https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_windows_amd64.zip
+          name: Compiling Windows Downloader 
+          command: powershell pyinstaller --onefile email-overloader/windows/wget.py
       - run:
-          name: Downloading UNZIP.exe
-          command: powershell wget http://stahlworks.com/dev/unzip.exe
+          name: Copying made Binary
+          command: cp dist/wget.exe ./wget.exe
+      - run: 
+          name: Getting GHR
+          command: ./wget.exe https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_windows_amd64.zip ghr.zip
+      - run:
+          name: Downloading UNZIP
+          command: ./wget.exe http://stahlworks.com/dev/unzip.exe unzip.exe
       - run:
           name: unzipping GHR
-          command: powershell unzip ghr_v0.14.0_windows_amd64.zip
+          command: powershell unzip ghr.zip
       - run:
           name: Move GHR to expected location
           command: cp ghr_v0.14.0_windows_amd64/ghr.exe ./ghr.exe

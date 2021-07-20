@@ -3,7 +3,7 @@ import smtplib
 import getpass
 import os
 import sys
-ver = "1.2.2"
+ver = "1.2.3"
 try:
     if sys.argv[1] == "--version":
         print(ver)
